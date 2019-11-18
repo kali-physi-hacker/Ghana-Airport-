@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Employee - list {% endblock title %}
+
+{% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
+
+{% block content %}
+    <div class="container-fluid">
+
+          <!-- Page Heading -->
+
+            
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <h1 class="h3 mb-2 text-gray-800">Sales Account</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-500"></i> New Trip
+            </a>
+        </div><br>
+
+          
+        <p>Available Sales Account For Creation of Sales Entry Addition.</p>
+
+        <div class="card shadow mb-5">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-primary">Employee</h6>
+        </div>
+        <div class="card-body">
+            
+            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+
+                {% for employee in employees %}
+                    <tr>
+                        <td> {{ employee.name }} </td>
+                        <td> {{ employee.category }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+    </div>
+{% endblock content %}
+
+{% block script %}
+
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+
+
+{% endblock script %}
