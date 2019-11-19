@@ -39,6 +39,7 @@ def create_employee(request):
 def edit_employee(request, pk):
     template = "employees/edit.html"
     employee = get_object_or_404(Employee, pk=pk)
+    employee.trip_set.count()
     form = EmployeeForm(request.GET or None, instance=employee)
     context = {"form": form}
     return render(request, template, context)

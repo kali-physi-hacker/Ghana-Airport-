@@ -33,6 +33,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>No. Of Trips</th>
+                        <th>Trips</th>
                     </tr>
                 </thead>
 
@@ -40,6 +42,9 @@
                     <tr>
                         <td> {{ employee.name }} </td>
                         <td> {{ employee.category }} </td>
+                        <td> {{ employee.trip_set.count }}</td>
+                        <td> {% for trip in employee.trip_set.all %} {{ trip.name }}, {% endfor %} </td>
+
                     </tr>
                 {% endfor %}
             </table>
