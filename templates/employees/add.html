@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Employee - New {% endblock title %}
+
+
+{% block content %}
+
+    <div class="container-fluid pt-5">
+        <div class="col-lg-7 mx-auto mt-5 col-md-10 col-sm-10 col-xs-12">
+            <div class="card shadow mb-5 pb-5">
+
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-dark">Add New Employee</h6>
+                </div>
+
+                <div class="card-body">
+                    <form action="{% url 'create_employee' %}" method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="form-group mb-5">
+                            <label for="{{ form.name.id_for_label }}">Name</label>
+                            <input type="text" class="form-control" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}">
+                        </div>
+                        <div class="form-group mt-5 mb-5">
+                            <label for="{{ form.category.id_for_label }}">Category</label>
+                            <select class="form-control" name="{{ form.category.name }}">
+                                <option>-------- Select Category ----------</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button class="btn btn-sm btn-secondary shadow mt-4">Add Category</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}
