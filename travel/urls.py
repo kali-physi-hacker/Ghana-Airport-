@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from tour.views.trip import home
+
 urlpatterns = [
+    path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('tour/', include('tour.urls')),
 ]
