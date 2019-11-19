@@ -6,21 +6,24 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %}{% endblock title %}</title>
 
-  <!-- Custom fonts for this template-->
-  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}" />
 
-  <!-- Custom styles for this template-->
-  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-  {% block style_link %}{% endblock style_link %}
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    {% block style_link %}{% endblock style_link %}
 
 </head>
 
@@ -33,7 +36,7 @@
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -45,7 +48,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{% url 'home' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Home</span></a>
       </li>
@@ -59,35 +62,35 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item {{ employee_active }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-users"></i>
           <span>Employees</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ employee_show }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Employees Components:</h6>
-            <a class="collapse-item" href="{% url 'list_employees' %}">List Employees</a>
-            <a class="collapse-item" href="cards.html">Add Employees</a>
+            <a class="collapse-item {{ list_employee_active }}" href="{% url 'list_employees' %}">List Employees</a>
+            <a class="collapse-item {{ add_employee_active }}" href="{% url 'add_employee' %}">Add Employees</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item {{ category_active }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-layer-group"></i>
           <span>Categories</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse {{ category_show }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Categories Components:</h6>
-            <a class="collapse-item" href="{% url 'list_categories' %}">List Category</a>
-            <a class="collapse-item" href="utilities-border.html">Add Category</a>
+            <a class="collapse-item {{ list_category_active }}" href="{% url 'list_categories' %}">List Category</a>
+            <a class="collapse-item {{ add_category_active }}" href="{% url 'add_category' %}">Add Category</a>
           </div>
         </div>
       </li>
-
+True
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -97,16 +100,16 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item {{ trip_active }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-plane"></i>
           <span>Tour</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse {{ trip_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tour Components:</h6>
-            <a class="collapse-item" href="{% url 'list_trip' %}">List Tour</a>
-            <a class="collapse-item" href="register.html">Add Tour</a>
+            <a class="collapse-item {{ list_trip_active }}" href="{% url 'list_trip' %}">List Trip</a>
+            <a class="collapse-item {{ add_trip_active }}" href="{% url 'add_trip' %}">Add Trip</a>
           </div>
         </div>
       </li>
@@ -345,6 +348,11 @@
     </div>
   </div>
 
+  {% block scriptC %}
+
+
+  {% endblock scriptC %}
+
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -354,6 +362,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
 
   {% block script %} {% endblock script %}
 
