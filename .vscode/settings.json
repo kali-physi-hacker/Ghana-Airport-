@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.pythonPath": "C:\\Users\\pc\\works\\Business\\win_venv\\Scripts\\python.exe"
+}
