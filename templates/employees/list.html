@@ -13,14 +13,14 @@
 
             
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h1 class="h3 mb-2 text-gray-800">Sales Account</h1>
+            <h1 class="h3 mb-2 text-gray-800">Employees</h1>
             <a href="{% url 'add_employee' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-500"></i> New Employee
             </a>
         </div><br>
 
           
-        <p>Available Sales Account For Creation of Sales Entry Addition.</p>
+        <p>Employees Available on a trip</p>
 
         <div class="card shadow mb-5">
         <div class="card-header">
@@ -31,8 +31,12 @@
             <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th>Picture</th>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Course</th>
+                        <th>Station</th>
+                        <th>Country</th>
                         <th>No. Of Trips</th>
                         <th>Trips</th>
                     </tr>
@@ -40,10 +44,22 @@
 
                 {% for employee in employees %}
                     <tr>
-                        <td> {{ employee.name }} </td>
+                        <td>
+                            <a target="_blank" href="{{ employee.avatar.url }}"><img style="margin:0; padding:0; border-radius:50%;" src="{{ employee.avatar.url }}" width="50" height="50" /></a>
+                        </td>
+                        <td> {{ employee.first_name }} {{ employee.surname }}</td>
                         <td> {{ employee.category }} </td>
-                        <td> {{ employee.trip_set.count }}</td>
-                        <td> {% for trip in employee.trip_set.all %} {{ trip.name }}, {% endfor %} </td>
+                        <td> {{ employee.course_name }}</td>
+                        <td> {{ employee.station }}</td>
+                        <td> {{ employee.country.name }}</td>
+                        <td> {{ employee.course_set.count }}</td>
+                        <td> 
+                            {% if employee.course_set.count > 0 %}
+                                {% for course in employee.course_set.all %} {{ course.name }}, {% endfor %}
+                            {% else %} 
+                                No Course Yet 
+                            {% endif %}
+                        </td>
 
                     </tr>
                 {% endfor %}

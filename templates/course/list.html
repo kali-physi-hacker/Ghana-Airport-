@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Category - list {% endblock title %}
+{% block title %} Trip - list {% endblock title %}
 
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
@@ -13,14 +13,14 @@
 
             
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h1 class="h3 mb-2 text-gray-800">Categories</h1>
-            <a href="{% url 'add_category' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-500"></i> New Category
+            <h1 class="h3 mb-2 text-gray-800">Trip</h1>
+            <a href="{% url 'add_course' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-500"></i> New Trip
             </a>
         </div><br>
 
           
-        <p>Available Sales Account For Creation of Sales Entry Addition.</p>
+        <p>Available Trip Employees can signup for and attend.</p>
 
         <div class="card shadow mb-5">
         <div class="card-header">
@@ -33,13 +33,15 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Employees</th>
                     </tr>
                 </thead>
 
-                {% for category in categories %}
+                {% for course in courses %}
                     <tr>
-                        <td> {{ category.name }} </td>
-                        <td> {{ category.description }} </td>
+                        <td> {{ course.name }} </td>
+                        <td> {{ course.description }} </td>
+                        <td> {% for employee in course.employees.all %} {{ employee.first_name }} {{ employee.surname }}, {% endfor %}</td>
                     </tr>
                 {% endfor %}
             </table>

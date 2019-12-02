@@ -23,6 +23,8 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    {% block internal_style %} {% endblock internal_style %}
+
     {% block style_link %}{% endblock style_link %}
 
 </head>
@@ -38,9 +40,9 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-book-open"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text">RFFS TRAINING RECORDS</div>
       </a>
 
       <!-- Divider -->
@@ -90,7 +92,6 @@
           </div>
         </div>
       </li>
-True
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -100,16 +101,16 @@ True
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item {{ trip_active }}">
+      <li class="nav-item {{ course_active }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-plane"></i>
-          <span>Tour</span>
+          <span>Course</span>
         </a>
-        <div id="collapsePages" class="collapse {{ trip_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse {{ course_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tour Components:</h6>
-            <a class="collapse-item {{ list_trip_active }}" href="{% url 'list_trip' %}">List Trip</a>
-            <a class="collapse-item {{ add_trip_active }}" href="{% url 'add_trip' %}">Add Trip</a>
+            <a class="collapse-item {{ list_course_active }}" href="{% url 'list_course' %}">List Trip</a>
+            <a class="collapse-item {{ add_course_active }}" href="{% url 'add_course' %}">Add Trip</a>
           </div>
         </div>
       </li>
