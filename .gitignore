@@ -4,3 +4,4 @@ ve/*
 .*pyc
 .idea
 .idea/*
+db.sqlite3
