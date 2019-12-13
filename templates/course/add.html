@@ -9,6 +9,28 @@
 {% block content %}
 
     <div class="container-fluid pt-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="col-lg-12 mr-auto ml-auto alert {{ message.tags }} alert-dismissable pb-0 pt-0" role="alert">
+                    <button type="button" class="close p-2" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" class="text-light font-weight-bold"><b>&times;</b></span>
+                    </button>
+                    <div class="row">
+                        <div class="mr-auto ml-auto">
+                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                             <b>
+                                {% if message.tags ==  "alert-danger" %}
+                                    <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
+                                {% else %}
+                                    <i class="fa fa-check"></i> {{ message }}
+                                {% endif %}
+                            </b>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="col-lg-7 mx-auto mt-5 col-md-10 col-sm-10 col-xs-12">
             <div class="card shadow mb-5">
 

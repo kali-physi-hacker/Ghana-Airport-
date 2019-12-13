@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from course.models.course import Course
 from course.models.employee import Employee
@@ -7,12 +8,14 @@ from course.forms.course import CourseForm
 
 
 # Create your views here.
+@login_required
 def home(request):
     template = "index.html"
     context = {}
     return render(request, template, context)
 
 
+@login_required
 def list_course(request):
     template = "course/list.html"
     courses = Course.objects.all()
@@ -20,6 +23,7 @@ def list_course(request):
     return render(request, template, context)
 
 
+@login_required
 def add_course(request):
     template = "course/add.html"
     form = CourseForm()
@@ -28,6 +32,7 @@ def add_course(request):
     return render(request, template, context)
 
 
+@login_required
 def create_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST or None)
@@ -41,6 +46,7 @@ def create_course(request):
             return redirect("add_course")
 
 
+@login_required
 def edit_course(request, pk):
     template = "course/edit.html"
     course = get_object_or_404(course, pk=pk)
@@ -49,6 +55,7 @@ def edit_course(request, pk):
     return render(request, template, context)
 
 
+@login_required
 def update_course(request, pk):
     if request.method == "POST":
         course = get_object_or_404(course, pk=pk)

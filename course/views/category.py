@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from course.models.category import Category
 from course.forms.category import CategoryForm
 
 
+@login_required
 def list_categories(request):
     template = "category/list.html"
     categories = Category.objects.all()
@@ -13,6 +15,7 @@ def list_categories(request):
     return render(request, template, context)
 
 
+@login_required
 def add_category(request):
     template = "category/add.html"
     form = CategoryForm()
@@ -20,6 +23,7 @@ def add_category(request):
     return render(request, template, context)
 
 
+@login_required
 def create_category(request):
     if request.method == "POST":
         form = CategoryForm(request.POST or None)
@@ -32,6 +36,7 @@ def create_category(request):
             return redirect("add_category")
 
 
+@login_required
 def edit_category(request, pk):
     template = "category/edit.html"
     category = get_object_or_404(Category, pk=pk)
@@ -40,6 +45,7 @@ def edit_category(request, pk):
     return render(request, template, context)
 
 
+@login_required
 def update_category(request, pk):
     category = get_object_or_404(Category, pk=pk)
     if request.method == "POST":

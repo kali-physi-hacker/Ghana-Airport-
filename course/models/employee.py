@@ -36,6 +36,7 @@ class Employee(models.Model):
     surname = models.CharField(max_length=150, blank=True, null=True)
     other_name = models.CharField(max_length=150, null=True, blank=True)
     avatar = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
+    staff_id = models.CharField(max_length=120, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     mobile_number = models.PositiveIntegerField(null=True, blank=True)
     sex = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)

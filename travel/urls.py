@@ -22,6 +22,7 @@ from course.views.course import home
 
 urlpatterns = [
     path('', home, name="home"),
+    path('', include('users.urls')),
     path('admin/', admin.site.urls),
     path('course/', include('course.urls')),
 ]

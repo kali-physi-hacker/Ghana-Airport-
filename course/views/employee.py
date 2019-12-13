@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django_countries.fields import countries
 
@@ -8,6 +9,7 @@ from course.models.category import Category
 from course.forms.employee import EmployeeForm
 
 
+@login_required
 def list_employees(request):
     template = "employees/list.html"
     employees = Employee.objects.all()
@@ -16,6 +18,7 @@ def list_employees(request):
     return render(request, template, context)
 
 
+@login_required
 def add_employee(request):
     template = "employees/add.html"
     form = EmployeeForm()
@@ -25,6 +28,7 @@ def add_employee(request):
     return render(request, template, context)
 
 
+@login_required
 def create_employee(request):
     if request.method == "POST":
         form = EmployeeForm(request.POST, request.FILES)
@@ -38,6 +42,7 @@ def create_employee(request):
             return redirect("add_employee")
 
 
+@login_required
 def edit_employee(request, pk):
     template = "employees/edit.html"
     employee = get_object_or_404(Employee, pk=pk)
@@ -47,6 +52,7 @@ def edit_employee(request, pk):
     return render(request, template, context)
 
 
+@login_required
 def update_employee(request, pk):
     if request.method == "POST":
         employee = get_object_or_404(Employee, pk=pk)
