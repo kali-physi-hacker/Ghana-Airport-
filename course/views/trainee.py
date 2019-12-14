@@ -6,6 +6,7 @@ from django_countries.fields import countries
 from course.models.trainee import Trainee
 
 from course.forms.trainee import TraineeForm
+from course.forms.trainee_course import TraineeCourseForm
 
 
 def list_trainees(request):

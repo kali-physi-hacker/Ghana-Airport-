@@ -23,6 +23,11 @@ from .views.trainee import (
     add_trainee, create_trainee,
 )
 
+from .views.trainee_course import (
+    list_trainee_course,
+    add_trainee_course,
+    create_trainee_course
+)
 
 urlpatterns = [
 
@@ -51,5 +56,10 @@ urlpatterns = [
     path('trainee/list/', list_trainees, name="list_trainee"),
     path('trainee/add/', add_trainee, name="add_trainee"),
     path('trainee/create/', create_trainee, name="create_trainee"),
+
+    # Trainee Course UrlConf
+    path('trainee_course/list/', list_trainee_course, name="list_trainee_course"),
+    path('trainee_course/add/', add_trainee_course, name="add_trainee_course"),
+    path("trainee_course/create/", create_trainee_course, name="create_trainee_course")
     
 ]

@@ -89,7 +89,9 @@
 
 {% endblock internal_style %}
 
-{% block style_link %} <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}"> {% endblock style_link %}
+{% block style_link %} 
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}"> 
+{% endblock style_link %}
 
 {% block script %}
 
@@ -115,7 +117,6 @@
     </script>
 
 
-
 {% endblock script %}
 
 
@@ -133,7 +134,7 @@
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
-                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                        <p class="h5 mr-auto ml-auto p-2 text-secondary">
                              <b>
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
@@ -163,7 +164,7 @@
                             </h1>
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type='file' id="{{ form.avatar.id_for_label }}" name="{{ form.avatar.name }}" accept="image/*" class="input" required />
+                                    <input type='file' id="{{ form.avatar.id_for_label }}" name="{{ form.avatar.name }}" accept="image/*" class="input" required autocomplete="off" />
                                     <label for="{{ form.avatar.id_for_label }}"></label>
                                 </div>
                                 <div class="avatar-preview">
@@ -175,29 +176,36 @@
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.first_name.id_for_label }}">First Name</label>
-                                <input type="text" class="form-control" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}" required />
+                                <input type="text" class="form-control" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}" required autocomplete="off" />
                             </div>
                             <div class="col">
-                                <label for="{{ form.name.id_for_label }}">Last Name</label>
-                                <input type="text" class="form-control" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}">
+                                <label for="{{ form.surname.id_for_label }}">Last Name</label>
+                                <input type="text" class="form-control" name="{{ form.surname.name }}" id="{{ form.surname.id_for_label }}">
                             </div>
                         </div>
 
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.other_name.id_for_label }}">Other Names</label>
-                                <input type="text" class="form-control" name="{{ form.other_name.name }}" id="{{ form.other_name.id_for_label }}" required />
+                                <input type="text" class="form-control" name="{{ form.other_name.name }}" id="{{ form.other_name.id_for_label }}" required autocomplete="off" />
                             </div>
                             <div class="col">
                                 <label for="{{ form.mobile_number.id_for_label }}">Telephone Number</label>
-                                <input type="text" class="form-control" name="{{ form.mobile_number.name }}" id="{{ form.mobile_number.id_for_label }}" required />
+                                <input type="text" class="form-control" name="{{ form.mobile_number.name }}" id="{{ form.mobile_number.id_for_label }}" required autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-4">
+                            <div class="col">
+                                <label for="{{ form.course_name.id_for_label }}">Course Name</label>
+                                <input class="form-control" type="tel" name="{{ form.course_name.name }}" id="{{ form.course_name.id_for_label }}" required />
                             </div>
                         </div>
 
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.date_of_birth.id_for_label }}">Date of birth</label>
-                                <input type="date" class="form-control" name="{{ form.date_of_birth.name }}" id="{{ form.date_of_birth.id_for_label }}" required />
+                                <input type="date" class="form-control" name="{{ form.date_of_birth.name }}" id="{{ form.date_of_birth.id_for_label }}" required autocomplete="off" />
                             </div>
                             <div class="col">
                                 <label for="{{ form.country.id_for_label }}">Select Country</label>
@@ -212,12 +220,12 @@
 
                         <div class="form-row mb-4">
                             <div class="col">
-                                <label for="{{ form.course_name.id_for_label }}">Course Name</label>
-                                <input class="form-control" type="tel" name="{{ form.course_name.name }}" id="{{ form.course_name.id_for_label }}" required />
+                                <label for="{{ form.staff_id.id_for_label }}">Staff Id</label>
+                                <input type="text" class="form-control" name="{{ form.staff_id.name }}" id="{{ form.staff_id.id_for_label }}" required autocomplete="off" />
                             </div>
                             <div class="col">
                                 <label for="{{ form.station.id_for_label }}">Station</label>
-                                <input class="form-control" type="text" name="{{ form.station.name }}" id="{{ form.station.id_for_label }}" required />
+                                <input class="form-control" type="text" name="{{ form.station.name }}" id="{{ form.station.id_for_label }}" required autocomplete="off" />
                             </div>
                         </div>
 
@@ -233,18 +241,18 @@
                             </div>
                             <div class="col">
                                 <label for="{{ form.date_of_enrollment.id_for_label }}">Date of Enrollment</label>
-                                <input type="date" class="form-control" name="{{ form.date_of_enrollment.name }}" id="{{ form.date_of_enrollment.id_for_label }}" required />
+                                <input type="date" class="form-control" name="{{ form.date_of_enrollment.name }}" id="{{ form.date_of_enrollment.id_for_label }}" required autocomplete="off" />
                             </div>
                         </div>
 
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.start_date.id_for_label }}">Start Date</label>
-                                <input class="form-control" type="date" name="{{ form.start_date.name }}" id="{{ form.start_date.id_for_label }}" required />
+                                <input class="form-control" type="date" name="{{ form.start_date.name }}" id="{{ form.start_date.id_for_label }}" required autocomplete="off" />
                             </div>
                             <div class="col">
                                 <label for="{{ form.end_date.id_for_label }}">End Date</label>
-                                <input class="form-control" type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}" required />
+                                <input class="form-control" type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}" required autocomplete="off" />
                             </div>
                         </div>
 

@@ -133,7 +133,7 @@
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
-                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                        <p class="h5 mr-auto ml-auto p-2 text-secondary">
                              <b>
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
@@ -178,8 +178,8 @@
                                 <input type="text" class="form-control" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}" required />
                             </div>
                             <div class="col">
-                                <label for="{{ form.name.id_for_label }}">Last Name</label>
-                                <input type="text" class="form-control" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}">
+                                <label for="{{ form.surname.id_for_label }}">Last Name</label>
+                                <input type="text" class="form-control" name="{{ form.surname.name }}" id="{{ form.surname.id_for_label }}">
                             </div>
                         </div>
 

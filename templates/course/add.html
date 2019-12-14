@@ -2,9 +2,7 @@
 
 {% load static %}
 
-{% block title %} Trip - New {% endblock title %}
-
-{% block style_link %} <link rel="stylesheet" href="{% static 'css/multiselect.css' %}" /> {% endblock style_link %}
+{% block title %} Course - New {% endblock title %}
 
 {% block content %}
 
@@ -17,7 +15,7 @@
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
-                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                        <p class="h5 mr-auto ml-auto p-2 text-secondary">
                              <b>
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
@@ -35,7 +33,7 @@
             <div class="card shadow mb-5">
 
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-dark">Add New Trip</h6>
+                    <h6 class="m-0 font-weight-bold text-dark">Add New Course</h6>
                 </div>
 
                 <div class="card-body">
@@ -48,9 +46,9 @@
 
                         <div class="form-group mb-5">
                             <label for="{{ form.employees.id_for_label }}">Employees</label>
-                            <select name="{{ form.employees.first_name }}" id="{{ form.employees.id_for_label }}" multiple="multiple" class="form-control">
+                            <select name="{{ form.employees.name }}" multiple id="{{ form.employees.id_for_label }}" class="form-control multiEmployees">
                                 {% for employee in employees %}
-                                    <option value="{{ employee.pk }}">{{ employee.name }}</option>
+                                    <option value="{{ employee.pk }}">{{ employee.first_name }} {{employee.surname }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -59,7 +57,7 @@
                             <label for="{{ form.description.id_for_label }}">Description</label>
                             <textarea class="form-control" rows="10" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}"></textarea>
                         </div>
-                        <button class="btn btn-sm btn-secondary shadow mt-4">Add Category</button>
+                        <button class="btn btn-sm btn-secondary shadow mt-4">Add Course</button>
                     </form>
                 </div>
             </div>
@@ -72,34 +70,10 @@
 {% block script %}
 
     <script type="text/javascript">
-        $(document).ready(function() {
-          $('select').multiselect({
-            templates: { // Use the Awesome Bootstrap Checkbox structure
-              li: '<li class="checkList"><a tabindex="0"><div class="aweCheckbox aweCheckbox-danger"><label for=""></label></div></a></li>'
-            }
-          });
-          $('.multiselect-container div.aweCheckbox').each(function(index) {
-
-            var id = 'multiselect-' + index,
-              $input = $(this).find('input');
-
-            // Associate the label and the input
-            $(this).find('label').attr('for', id);
-            $input.attr('id', id);
-
-            // Remove the input from the label wrapper
-            $input.detach();
-
-            // Place the input back in before the label
-            $input.prependTo($(this));
-
-            $(this).click(function(e) {
-              // Prevents the click from bubbling up and hiding the dropdown
-              e.stopPropagation();
-            });
-
-          });
-        });
+        $(document).ready(function(){
+            $(".multiEmployees").chosen();
+        })
     </script>
+
 
 {% endblock script %}

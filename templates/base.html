@@ -14,11 +14,17 @@
 
     <title>{% block title %}{% endblock title %}</title>
 
+    <link rel='shortcut icon' href='{% static 'assets/images/logo_Gacl.png' %}' />
+
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
     <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/chosen/chosen.css' %}" />
+    
 
 
     <!-- Custom styles for this template-->
@@ -106,7 +112,7 @@
       <!-- Nav Item - Course Collapse Menu -->
       <li class="nav-item {{ course_active }}">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-clipboard-list"></i>
+          <i class="fas fa-fw fa-book-open"></i>
           <span>Course</span>
         </a>
         <div id="collapsePages" class="collapse {{ course_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -129,7 +135,7 @@
             <h6 class="collapse-header">External Partners:</h6>
             <a class="collapse-item {{ list_trainee_active }}" href="{% url 'list_trainee' %}">List Trainee</a>
             <a class="collapse-item {{ add_trainee_active }}" href="{% url 'add_trainee' %}">Add Trainee</a>
-            <a class="collapse-item {{ add_trainee_course_active }}" href="#">Add Trainee Course</a>
+            <a class="collapse-item {{ add_trainee_course_active }}" href="{% url 'add_trainee_course' %}">Add Trainee Course</a>
           </div>
         </div>
       </li>
@@ -279,6 +285,8 @@
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
   <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/chosen/chosen.jquery.js' %}"></script>
+
 
   {% block script %} {% endblock script %}
 

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Trip - list {% endblock title %}
+{% block title %} Course - list {% endblock title %}
 
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
@@ -19,7 +19,7 @@
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
-                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                        <p class="h5 mr-auto ml-auto p-2 text-secondary">
                              <b>
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
@@ -36,14 +36,14 @@
 
             
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h1 class="h3 mb-2 text-gray-800">Trip</h1>
+            <h1 class="h3 mb-2 text-gray-800">Courses</h1>
             <a href="{% url 'add_course' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-500"></i> New Trip
+                <i class="fas fa-plus fa-sm text-white-500"></i> New Course
             </a>
         </div><br>
 
           
-        <p>Available Trip Employees can signup for and attend.</p>
+        <p>Available Courses Employees can signup for and attend.</p>
 
         <div class="card shadow mb-5">
         <div class="card-header">
