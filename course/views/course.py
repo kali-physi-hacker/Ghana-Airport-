@@ -3,7 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from course.models.course import Course
+from course.models.trainee import Trainee
 from course.models.employee import Employee
+from course.models.category import Category
+
 from course.forms.course import CourseForm
 
 
@@ -11,7 +14,17 @@ from course.forms.course import CourseForm
 @login_required
 def home(request):
     template = "index.html"
-    context = {}
+    total_employees = len(Employee.objects.all())
+    total_courses = len(Course.objects.all())
+    total_trainees = len(Trainee.objects.all())
+    total_categories = len(Category.objects.all())
+
+    context = {
+        "total_employees": total_employees,
+        "total_trainees": total_trainees,
+        "total_courses": total_courses,
+        "total_categories": total_categories
+    }
     return render(request, template, context)
 
 
