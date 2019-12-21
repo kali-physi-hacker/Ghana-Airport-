@@ -1,5 +1,5 @@
 {
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "/home/kali/.pyenv/shims/python"
+    "python.pythonPath": "/home/kali/Business/environments/venv_travel/bin/python"
 }

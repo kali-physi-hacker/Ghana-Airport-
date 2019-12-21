@@ -17,12 +17,13 @@ def list_trainee_course(request):
     return render(request, template, context)
 
 
-def add_trainee_course(request):
+def add_trainee_course(request, input_data=None):
     template = "trainee_course/add.html"
     form = TraineeCourseForm()
     trainees = Trainee.objects.all()
     context = {
         "form": form,
+        "input_data": input_data,
         "trainees": trainees,
         "trainee_show": "show",
         "add_trainee_course_active": "active",
@@ -34,11 +35,11 @@ def add_trainee_course(request):
 def create_trainee_course(request):
     if request.method == "POST":
         form = TraineeCourseForm(request.POST or None)
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save()
             messages.sucess(request, "Trainee Course Added Successfully")
             return redirect("list_trainee_course")
         else:
             messages.error(request, "Trainee Course Creation Failed")
-            return redirect("add_trainee_course")
+            return add_trainee_course(request, form) # redirect("add_trainee_course")

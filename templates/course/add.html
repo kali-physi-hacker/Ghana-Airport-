@@ -2,6 +2,18 @@
 
 {% load static %}
 
+{% block internal_style %}
+    <style>
+        .errorlist li {
+            color: #e74a3b;
+            list-style: none;
+            margin: 0;
+        }
+    </style>
+
+
+{% endblock internal_style %}
+
 {% block title %} Course - New {% endblock title %}
 
 {% block content %}
@@ -41,7 +53,8 @@
                         {% csrf_token %}
                         <div class="form-group mb-5">
                             <label for="{{ form.name.id_for_label }}">Name</label>
-                            <input type="text" class="form-control" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}">
+                            <input type="text" class="form-control" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" value={{ input_data.data.name }}>
+                            <p> {{ input_data.errors.name }} </p>
                         </div>
 
                         <div class="form-group mb-5">
@@ -51,11 +64,13 @@
                                     <option value="{{ employee.pk }}">{{ employee.first_name }} {{employee.surname }}</option>
                                 {% endfor %}
                             </select>
+                            <p class="text-light">{{ input_data.errors.employees }}</p>
                         </div>
 
                         <div class="form-group mt-5">
                             <label for="{{ form.description.id_for_label }}">Description</label>
-                            <textarea class="form-control" rows="10" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}"></textarea>
+                            <textarea class="form-control" rows="10" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}">{{ input_data.data.description }}</textarea>
+                            <p class="text-danger">{{ input_data.errors.description }}</p>
                         </div>
                         <button class="btn btn-sm btn-secondary shadow mt-4">Add Course</button>
                     </form>

@@ -19,12 +19,30 @@ def list_employees(request):
 
 
 @login_required
-def add_employee(request):
+def add_employee(request, input_data=None):
     template = "employees/add.html"
     form = EmployeeForm()
     categories = Category.objects.all()
-    context = {"form": form, "categories": categories, "add_employee_active": "active", "employee_show": "show",
+    context = {"form": form, "input_data":input_data, "categories": categories, "add_employee_active": "active", "employee_show": "show",
                "employee_active": "active", "countries": countries}
+    if input_data is not None:
+        input_country = input_data.data.get("country")
+        # import pdb; pdb.set_trace()
+        for country in countries:
+            if country[0] == input_country:
+                country_input_name = country[1]
+                country_input_code = country[0]
+                context['country_input_name'] = country_input_name
+                context['country_input_code'] = country_input_code 
+
+        input_category = input_data.data.get("category")
+        # import pdb; pdb.set_trace()
+        category = Category.objects.get(pk=input_category)
+        context['category'] = category
+        
+        input_sex = input_data.data.get("sex")
+        context['sex'] = input_sex
+        # import pdb; pdb.set_trace()
     return render(request, template, context)
 
 
@@ -39,7 +57,7 @@ def create_employee(request):
             return redirect("list_employees")
         else:
             messages.error(request, "Employee Creation Failed!")
-            return redirect("add_employee")
+            return add_employee(request, form) # redirect("add_employee")
 
 
 @login_required

@@ -34,6 +34,7 @@ urlpatterns = [
     # course UrlConf
     path('course/list/', list_course, name="list_course"),
     path('course/add/', add_course, name="add_course"),
+    # path('course/add/<input_data>/', add_course, name="add_course"),
     path('course/create/', create_course, name="create_course"),
     path('course/<int:pk>/edit/', edit_course, name="edit_course"),
     path('course/<int:pk>/update/', update_course, name="update_course"),

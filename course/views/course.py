@@ -37,11 +37,11 @@ def list_course(request):
 
 
 @login_required
-def add_course(request):
+def add_course(request, input_data=None):
     template = "course/add.html"
     form = CourseForm()
     employees = Employee.objects.all()
-    context = {"form": form, "employees": employees, "add_course_active": "active", "course_show": "show", "course_active": "active"}
+    context = {"form": form, "input_data":input_data, "employees": employees, "add_course_active": "active", "course_show": "show", "course_active": "active"}
     return render(request, template, context)
 
 
@@ -52,11 +52,12 @@ def create_course(request):
         # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save()
-            messages.success(request, "course Added Successfully")
+            messages.success(request, "Course Added Successfully")
             return redirect("list_course")
         else:
-            messages.error(request, "course Creation Failed")
-            return redirect("add_course")
+            # import pdb; pdb.set_trace()
+            messages.error(request, "Course Creation Failed")
+            return add_course(request, form) # redirect("add_course_args", input_data=2)
 
 
 @login_required
