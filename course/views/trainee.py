@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django_countries.fields import countries
 
@@ -9,6 +10,7 @@ from course.forms.trainee import TraineeForm
 from course.forms.trainee_course import TraineeCourseForm
 
 
+@login_required
 def list_trainees(request):
     template = "trainee/list.html"
     trainees = Trainee.objects.all()
@@ -18,6 +20,7 @@ def list_trainees(request):
     return render(request, template, context)
 
 
+@login_required
 def add_trainee(request, input_data=None):
     template = "trainee/add.html"
     form = TraineeForm()
@@ -47,6 +50,7 @@ def add_trainee(request, input_data=None):
     return render(request, template, context)
 
 
+@login_required
 def create_trainee(request):
     if request.method == "POST":
         form = TraineeForm(request.POST or None, request.FILES or None)
@@ -60,6 +64,7 @@ def create_trainee(request):
             return add_trainee(request, form)  # redirect("add_trainee")
 
 
+@login_required
 def edit_trainee(request, pk):
     template = "trainee/edit.html"
     form = TraineeForm()

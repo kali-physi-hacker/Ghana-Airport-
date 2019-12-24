@@ -18,6 +18,7 @@ def list_employees(request):
     return render(request, template, context)
 
 
+@login_required
 def detail_employees(request, pk):
     template = "employees/details.html"
     employee = get_object_or_404(Employee, pk=pk)
