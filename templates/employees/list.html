@@ -4,6 +4,16 @@
 
 {% block title %} Employee - list {% endblock title %}
 
+{% block internal_style %}
+    <style>
+        td > a, td > a:hover{
+            color: #858796;
+            text-decoration: none;
+        }
+    </style>
+
+{% endblock internal_style %}
+
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
 {% block content %}
@@ -19,7 +29,7 @@
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
-                        <p class="h5 mr-auto ml-auto p-2 text-light">
+                        <p class="h5 mr-auto ml-auto p-2 text-dark">
                              <b>
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
@@ -70,7 +80,7 @@
                         <td>
                             <a target="_blank" href="{{ employee.avatar.url }}"><img style="margin:0; padding:0; border-radius:50%;" src="{{ employee.avatar.url }}" width="50" height="50" /></a>
                         </td>
-                        <td> {{ employee.first_name }} {{ employee.surname }}</td>
+                        <td> <a href="{% url 'detail_employee' employee.pk %}">{{ employee.first_name }} {{ employee.surname }}</a></td>
                         <td> {{ employee.category }} </td>
                         <td> {{ employee.course_name }}</td>
                         <td> {{ employee.station }}</td>

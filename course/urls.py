@@ -1,7 +1,7 @@
 from django.urls import path 
 
 from .views.course import (
-    home, list_course, 
+    list_course,
     add_course, create_course, 
     edit_course, update_course
 )
@@ -13,7 +13,8 @@ from .views.category import (
 )
 
 from .views.employee import (
-    list_employees, 
+    list_employees,
+    detail_employees,
     add_employee, create_employee, 
     edit_employee, update_employee
 )
@@ -52,6 +53,7 @@ urlpatterns = [
     path('employee/create/', create_employee, name="create_employee"),
     path('employee/<int:pk>/edit/', edit_employee, name="edit_employee"),
     path('employee/<int:pk>/update/', update_employee, name="update_employee"),
+    path('employee/<int:pk>/', detail_employees, name="detail_employee"),
 
     # Trainee UrlConf
     path('trainee/list/', list_trainees, name="list_trainee"),

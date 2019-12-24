@@ -49,5 +49,7 @@ class Employee(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
 
+    date_created = models.DateTimeField(default=timezone.now, blank=True)
+
     def __str__(self):
         return self.first_name
