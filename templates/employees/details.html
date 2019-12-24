@@ -235,7 +235,7 @@
                         <p>
                            {{ employee.summary }}
                         </p>
-                        <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-block btn-lg disabled"> Delete  Member</a>
+                        <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-block btn-lg"> Delete  Member</a>
                     </div>
                 </div>
             </div>
@@ -249,6 +249,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete {{ employee.first_name }} {{ employee.surname }} from the system?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger" href="{% url 'delete_employee' employee.pk %}">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 {% endblock content %}

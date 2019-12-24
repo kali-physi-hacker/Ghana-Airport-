@@ -57,3 +57,11 @@ def update_category(request, pk):
         else:
             messages.error(request, "Category Update Failed!")
             return redirect("edit_category")
+
+
+@login_required
+def delete_category(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    category.delete()
+    messages.success(request, "Rank Deleted Successfully")
+    return redirect("list_categories")

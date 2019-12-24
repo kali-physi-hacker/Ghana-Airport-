@@ -6,6 +6,16 @@
 
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
+{% block internal_style %}
+
+    <style>
+        td > a {
+            color: #858796;
+        }
+    </style>
+
+{% endblock internal_style %}
+
 {% block content %}
     <div class="container-fluid">
 
@@ -55,6 +65,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -62,11 +73,29 @@
                     <tr>
                         <td> {{ category.name }} </td>
                         <td> {{ category.description }} </td>
+                        <td style="cursor: pointer"><a data-toggle="modal" data-target="#deleteModal" href="#"><i class="fa fa-trash-alt"></i></a></td>
                     </tr>
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteRankModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete Rank?</div>
+                        <div class="modal-footer">
+                          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                          <a class="btn btn-danger" href="{% url 'delete_category' category.pk %}">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
                 {% endfor %}
             </table>
-
-    </div>
+        </div>
+  </div>
 {% endblock content %}
 
 {% block script %}

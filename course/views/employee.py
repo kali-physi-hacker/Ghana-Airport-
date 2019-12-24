@@ -90,3 +90,12 @@ def update_employee(request, pk):
         else:
             messages.error(request, "Employee Update Failed")
             return redirect("edit_employee")
+
+
+@login_required
+def delete_employee(request, pk):
+    employee = get_object_or_404(Employee, pk=pk)
+    # form = EmployeeForm(request.GET or None, instance=employee)
+    employee.delete()
+    messages.success(request, "Employee Deleted Successfully!")
+    return redirect("list_employees")

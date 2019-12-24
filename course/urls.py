@@ -3,20 +3,23 @@ from django.urls import path
 from .views.course import (
     list_course,
     add_course, create_course, 
-    edit_course, update_course
+    edit_course, update_course,
+    delete_course,
 )
 
 from .views.category import (
     list_categories, 
     add_category, create_category, 
-    edit_category, update_category
+    edit_category, update_category,
+    delete_category,
 )
 
 from .views.employee import (
     list_employees,
     detail_employees,
     add_employee, create_employee, 
-    edit_employee, update_employee
+    edit_employee, update_employee,
+    delete_employee,
 )
 
 from .views.trainee import (
@@ -27,7 +30,7 @@ from .views.trainee import (
 from .views.trainee_course import (
     list_trainee_course,
     add_trainee_course,
-    create_trainee_course
+    create_trainee_course,
 )
 
 urlpatterns = [
@@ -39,6 +42,7 @@ urlpatterns = [
     path('course/create/', create_course, name="create_course"),
     path('course/<int:pk>/edit/', edit_course, name="edit_course"),
     path('course/<int:pk>/update/', update_course, name="update_course"),
+    path('course/<int:pk>/delete/', delete_course, name="delete_course"),
 
     # Category UrlConf
     path('category/list/', list_categories, name="list_categories"),
@@ -46,6 +50,7 @@ urlpatterns = [
     path('category/create/', create_category, name="create_category"),
     path('category/<int:pk>/edit/', edit_category, name="edit_category"),
     path('category/<int:pk>/update/', update_category, name="update_category"),
+    path('category/<int:pk>/delete/', delete_category, name="delete_category"),
 
     # Employee UrlConf
     path('employee/list/', list_employees, name="list_employees"),
@@ -54,6 +59,7 @@ urlpatterns = [
     path('employee/<int:pk>/edit/', edit_employee, name="edit_employee"),
     path('employee/<int:pk>/update/', update_employee, name="update_employee"),
     path('employee/<int:pk>/', detail_employees, name="detail_employee"),
+    path('employee/<int:pk>/delete/', delete_employee, name="delete_employee"),
 
     # Trainee UrlConf
     path('trainee/list/', list_trainees, name="list_trainee"),

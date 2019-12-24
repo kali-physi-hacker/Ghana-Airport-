@@ -72,7 +72,7 @@ def edit_course(request, pk):
 @login_required
 def update_course(request, pk):
     if request.method == "POST":
-        course = get_object_or_404(course, pk=pk)
+        course = get_object_or_404(Course, pk=pk)
         form = CourseForm(request.POST or None, instance=course)
         if form.is_valid():
             form.save()
@@ -81,3 +81,11 @@ def update_course(request, pk):
         else:
             messages.error(request, "course Update Failed")
             return redirect("edit_course")
+
+
+@login_required
+def delete_course(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    course.delete()
+    messages.success(request, "Course Deleted Successfully")
+    return redirect("list_course")
