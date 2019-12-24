@@ -247,12 +247,12 @@
 
                         <div class="form-row mb-4">
                             <div class="col">
-                                <label for="{{ form.category.id_for_label }}">Category</label>
+                                <label for="{{ form.category.id_for_label }}">Rank</label>
                                 <select class="form-control" name="{{ form.category.name }}">
                                     {% if category %}
                                         <option value="{{ category.pk }}">{{ category.name }}</option>
                                     {% else %}
-                                        <option>-------- Select Category ----------</option>
+                                        <option>-------- Select Rank ----------</option>
                                     {% endif %}
                                     {% for category in categories %}
                                         <option value="{{ category.pk }}">{{ category.name }}</option>
