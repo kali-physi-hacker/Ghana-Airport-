@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" />
 
     <link rel="stylesheet" href="{% static 'css/chosen/chosen.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magic-check.css' %}" />
     
 
 
@@ -117,7 +119,7 @@
         </a>
         <div id="collapsePages" class="collapse {{ course_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tour Components:</h6>
+            <h6 class="collapse-header">Course Components:</h6>
             <a class="collapse-item {{ list_course_active }}" href="{% url 'list_course' %}">List Course</a>
             <a class="collapse-item {{ add_course_active }}" href="{% url 'add_course' %}">Add Course</a>
           </div>
@@ -189,6 +191,48 @@
                     </div>
                   </div>
                 </form>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">{{ notifications | length }}</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                {% for notification in notifications %}
+                <a id="notification{{ notification.pk }}" class="dropdown-item d-flex align-items-center" onclick="readNotification('notification{{notification.pk}}')">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-plane text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500 notification{{notification.pk}}">{{ notification.datetime }}</div>
+                    <span class="font-weight-bold text-dark">{{ notification.message }}</span>
+                  </div>
+                </a>
+
+                {% endfor %}
+                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-code text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                -->
+                
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
 
@@ -275,18 +319,33 @@
 
   {% endblock scriptC %}
 
+  <script>
+    const readNotification = (id) => {
+      const notification = document.getElementById(id);
+      // const notificationText = document.getElementsByClassName(id)
+      alert(notification)
+      notification.classList.remove("dark");
+      notification.classList.add("gray")
+      // alert(notification)
+    }
+
+  </script>
+
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/moment.min.js' %}"></script>
+  <script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
+  <script src="{% static 'js/BsMultiSelect.js' %}"></script>
+  <script>$(".multiselect").dashboardCodeBsMultiSelect();</script>
   <!-- Core plugin JavaScript-->
   <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/chosen/chosen.jquery.js' %}"></script>
-
+  <!-- <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
+   <script type="text/javascript" src="{% static 'js/chosen/chosen.jquery.js' %}"></script> -->
 
   {% block script %} {% endblock script %}
 

@@ -1,13 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
+from django_countries.fields import countries
 
 from course.models.course import Course
 from course.models.trainee import Trainee
 from course.models.employee import Employee
 from course.models.category import Category
 
+from course.models.notification import Notification
+
 from course.forms.course import CourseForm
+
+
+# @login_required
+def return_next_trips():
+    courses = Course.objects.filter(start_date__gte=timezone.now().date())
+    return courses 
 
 
 # Create your views here.
@@ -25,6 +36,11 @@ def home(request):
         "total_courses": total_courses,
         "total_categories": total_categories
     }
+
+    # pending_trainees = Trainee.objects.filter(status='P').filter(start_date)
+    """for trainee in pending_trainees:
+        if trainee"""
+
     return render(request, template, context)
 
 
@@ -41,7 +57,7 @@ def add_course(request, input_data=None):
     template = "course/add.html"
     form = CourseForm()
     employees = Employee.objects.all()
-    context = {"form": form, "input_data":input_data, "employees": employees, "add_course_active": "active", "course_show": "show", "course_active": "active"}
+    context = {"form": form, "input_data":input_data, "employees": employees, "add_course_active": "active", "course_show": "show", "course_active": "active", "countries":countries}
     return render(request, template, context)
 
 

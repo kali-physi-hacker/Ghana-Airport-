@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %} {{ employee }} {% endblock title %}
 
 {% block internal_style %}
@@ -157,13 +159,13 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item">
-                                <img class="d-block" src="{{ employee.avatar.url }}" alt="First slide" height="310px">
+                                <img class="d-block" src="{% if employee.avatar %} employee.avatar.url {% else %} {% if employee.gender == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/avatar01.png' %} {% endif %} {% endif %}" alt="First slide" height="310px">
                             </div>
                             <div class="carousel-item active">
-                                <img class="d-block" src="{{ employee.avatar.url }}" alt="Second slide" height="310px">
+                                <img class="d-block" src="{% if employee.avatar %} employee.avatar.url {% else %} {% if employee.gender == 'M' %} {% static 'assets/images/avatar01.png' %} {% else %} {% static 'assets/images/avatar01.png' %} {% endif %} {% endif %}" alt="Second slide" height="310px">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block" src="{{ employee.avatar.url }}" alt="Third slide" height="310px">
+                                <img class="d-block" src="{% if employee.avatar %} employee.avatar.url {% else %} {% if employee.gender == 'M' %} {% static 'assets/images/avatar01.png' %} {% else %} {% static 'assets/images/avatar01.png' %} {% endif %} {% endif %}" alt="Third slide" height="310px">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

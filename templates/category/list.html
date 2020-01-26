@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Category - list {% endblock title %}
+{% block title %} Rank - list {% endblock title %}
 
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
@@ -24,7 +24,7 @@
             {% for message in messages %}
                 <div class="col-lg-12 mr-auto ml-auto alert {{ message.tags }} alert-dismissable pb-0 pt-0" role="alert">
                     <button type="button" class="close p-2" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true" class="text-light font-weight-bold"><b>&times;</b></span>
+                        <span aria-hidden="true" class="text-dark font-weight-bold"><b>&times;</b></span>
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
@@ -33,7 +33,7 @@
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
                                 {% else %}
-                                    <i class="fa fa-check"></i> {{ message }}
+                                    <i class="fa fa-check mr-3"></i> {{ message }}
                                 {% endif %}
                             </b>
                         </p>
@@ -45,18 +45,18 @@
 
             
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h1 class="h3 mb-2 text-gray-800">Categories</h1>
+            <h1 class="h3 mb-2 text-gray-800">Ranks</h1>
             <a href="{% url 'add_category' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-500"></i> New Category
+                <i class="fas fa-plus fa-sm text-white-500"></i> New Rank
             </a>
         </div><br>
 
           
-        <p>Available Categories for creation of employees.</p>
+        <p>Available Ranks for creation of employees.</p>
 
         <div class="card shadow mb-5">
         <div class="card-header">
-            <h6 class="m-0 font-weight-bold text-primary">Trips</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Ranks</h6>
         </div>
         <div class="card-body">
             

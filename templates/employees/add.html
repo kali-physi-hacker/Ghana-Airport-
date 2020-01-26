@@ -125,6 +125,16 @@
 
         });
 
+        $('#datetimepicker').datetimepicker({
+            format: 'MM/DD/YYYY',
+            time: 'fa fa-clock',
+        })
+
+        $('#datetimepicker1').datetimepicker({
+            format: 'MM/DD/YYYY',
+            time: 'fa fa-clock',
+        })
+
     </script>
 
 
@@ -141,7 +151,7 @@
             {% for message in messages %}
                 <div class="col-lg-12 mr-auto ml-auto alert {{ message.tags }} alert-dismissable pb-0 pt-0" role="alert">
                     <button type="button" class="close p-2" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true" class="text-light font-weight-bold"><b>&times;</b></span>
+                        <span aria-hidden="true" class="text-dark font-weight-bold"><b>&times;</b></span>
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
@@ -150,7 +160,7 @@
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
                                 {% else %}
-                                    <i class="fa fa-check"></i> {{ message }}
+                                    <i class="fa fa-check mr-3"></i> {{ message }}
                                 {% endif %}
                             </b>
                         </p>
@@ -192,7 +202,7 @@
                             </div>
                             <div class="col">
                                 <label for="{{ form.surname.id_for_label }}">Last Name</label>
-                                <input type="text" class="form-control" name="{{ form.surname.name }}" id="{{ form.surname.id_for_label }}" value="{{ input_data.data.surname }}" />
+                                <input type="text" class="form-control" name="{{ form.surname.name }}" id="{{ form.surname.id_for_label }}" required autocomplete="off" value="{{ input_data.data.surname }}" />
                             </div>
                         </div>
 
@@ -207,18 +217,28 @@
                             </div>
                         </div>
 
-                        <div class="form-row mb-4">
-                            <div class="col">
-                                <label for="{{ form.course_name.id_for_label }}">Course Name</label>
-                                <input class="form-control" type="tel" name="{{ form.course_name.name }}" id="{{ form.course_name.id_for_label }}" required value="{{ input_data.data.course_name }}" />
+                        <!--
+                            <div class="form-row mb-4">
+                                <div class="col">
+                                    <label for="{{ form.course_name.id_for_label }}">Course Name</label>
+                                    <input class="form-control" type="tel" name="{{ form.course_name.name }}" id="{{ form.course_name.id_for_label }}" required value="{{ input_data.data.course_name }}" />
+                                </div>
                             </div>
-                        </div>
+                        -->
 
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.date_of_birth.id_for_label }}">Date of birth</label>
-                                <input type="date" class="form-control" name="{{ form.date_of_birth.name }}" id="{{ form.date_of_birth.id_for_label }}" required autocomplete="off" value="{{ input_data.data.date_of_birth }}" />
+                                <!-- <input type="date" class="form-control" name="{{ form.date_of_birth.name }}" id="{{ form.date_of_birth.id_for_label }}" autocomplete="off" value="{{ input_data.data.date_of_birth }}" />
+                                -->
+                                <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                    <input type="text" name="{{ form.date_of_birth.name }}" required id="{{ form.date_of_birth.id_for_label }}" class="form-control datetimepicker-input" data-target="#datetimepicker" />
+                                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text bg-dark"><i class="text-light far fa-calendar-alt"></i></div>
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="col">
                                 <label for="{{ form.country.id_for_label }}">Select Country</label>
                                 <select name="{{ form.country.name }}" id="{{ form.country.id_for_label }}" class="form-control">
@@ -261,10 +281,18 @@
                             </div>
                             <div class="col">
                                 <label for="{{ form.date_of_enrollment.id_for_label }}">Date of Enrollment</label>
-                                <input type="date" class="form-control" name="{{ form.date_of_enrollment.name }}" id="{{ form.date_of_enrollment.id_for_label }}" required autocomplete="off" value="{{ input_data.data.date_of_enrollment }}" />
+                               <!-- <input type="date" class="form-control" name="{{ form.date_of_enrollment.name }}" id="{{ form.date_of_enrollment.id_for_label }}" required autocomplete="off" value="{{ input_data.data.date_of_enrollment }}" />
+                                -->
+                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                    <input type="text" name="{{ form.date_of_enrollment.name }}" required id="{{ form.date_of_enrollment.id_for_label }}" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                        <div class="input-group-text bg-dark"><i class="text-light far fa-calendar-alt"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <!--
                         <div class="form-row mb-4">
                             <div class="col">
                                 <label for="{{ form.start_date.id_for_label }}">Start Date</label>
@@ -274,22 +302,25 @@
                                 <label for="{{ form.end_date.id_for_label }}">End Date</label>
                                 <input class="form-control" type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}" required autocomplete="off" value="{{ input_data.data.end_date }}" />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-row mb-4">
                             <div class="col">
-                                <label for="{{ form.sex.id_for_label }}">
-                                    <input type="radio" value="M" name="{{ form.sex.name }}" {% if sex == 'M' %} checked {% endif %} /> Male
+                                <input id="id_male" class="magic-radio" type="radio" value="M" name="{{ form.sex.name }}" {% if sex == 'M' %} checked {% endif %} />
+                                <label for="id_male">
+                                    Male
                                 </label>
                             </div>
                             <div class="col">
-                                <label for="{{ form.sex.id_for_label }}">
-                                    <input type="radio" value="F" name="{{ form.sex.name }}" {% if sex == 'F' %} checked {% endif %} /> Female
+                                <input class="magic-radio" id="id_female" type="radio" value="F" name="{{ form.sex.name }}" {% if sex == 'F' %} checked {% endif %} />
+                                <label for="id_female">
+                                    Female
                                 </label>
                             </div>
                             <div class="col">
-                                <label for="{{ form.sex.id_for_label }}">
-                                    <input type="radio" value="O" name="{{ form.sex.name }}" {% if sex == 'O' %} checked {% endif %} /> Other
+                                <input class="magic-radio" id="id_other" type="radio" value="O" name="{{ form.sex.name }}" {% if sex == 'O' %} checked {% endif %} /> 
+                                <label for="id_other">
+                                    Other
                                 </label>
                             </div>
                         </div>

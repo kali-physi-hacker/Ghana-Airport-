@@ -25,7 +25,7 @@
             {% for message in messages %}
                 <div class="col-lg-12 mr-auto ml-auto alert {{ message.tags }} alert-dismissable pb-0 pt-0" role="alert">
                     <button type="button" class="close p-2" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true" class="text-light font-weight-bold"><b>&times;</b></span>
+                        <span aria-hidden="true" class="text-dark font-weight-bold"><b>&times;</b></span>
                     </button>
                     <div class="row">
                         <div class="mr-auto ml-auto">
@@ -34,7 +34,7 @@
                                 {% if message.tags ==  "alert-danger" %}
                                     <i class="fa fa-exclamation-triangle mr-3 text-danger"></i> {{ message }}
                                 {% else %}
-                                    <i class="fa fa-check"></i> {{ message }}
+                                    <i class="fa fa-check mr-3"></i> {{ message }}
                                 {% endif %}
                             </b>
                         </p>
@@ -66,8 +66,7 @@
                     <tr>
                         <th>Picture</th>
                         <th>Name</th>
-                        <th>Category</th>
-                        <th>Course</th>
+                        <th>Rank</th>
                         <th>Station</th>
                         <th>Country</th>
                         <th>No. Of Course</th>
@@ -78,11 +77,12 @@
                 {% for employee in employees %}
                     <tr>
                         <td>
-                            <a target="_blank" href="{{ employee.avatar.url }}"><img style="margin:0; padding:0; border-radius:50%;" src="{{ employee.avatar.url }}" width="50" height="50" /></a>
+                            <a target="_blank" href="{% if employee.avatar %} {{ employee.avatar.url }} {% else %} {% if employee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}">
+                                <img style="margin:0; padding:0; border-radius:50%;" src="{% if employee.avatar %} {{ employee.avatar.url }} {% else %} {% if employee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}" width="50" height="50" />
+                            </a>
                         </td>
                         <td> <a href="{% url 'detail_employee' employee.pk %}">{{ employee.first_name }} {{ employee.surname }}</a></td>
                         <td> {{ employee.category }} </td>
-                        <td> {{ employee.course_name }}</td>
                         <td> {{ employee.station }}</td>
                         <td> {{ employee.country.name }}</td>
                         <td> {{ employee.course_set.count }}</td>

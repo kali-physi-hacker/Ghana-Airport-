@@ -64,6 +64,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'course.context_processors.show_notifications',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -78,6 +79,10 @@ WSGI_APPLICATION = 'travel.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+import os 
+
+# if os.environ.get('ENV') == 'DEV':
 
 DATABASES = {
     'default': {
