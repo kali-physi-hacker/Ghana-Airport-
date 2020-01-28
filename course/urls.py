@@ -23,14 +23,17 @@ from .views.employee import (
 )
 
 from .views.trainee import (
-    list_trainees,
+    list_trainees, detail_trainee,
     add_trainee, create_trainee,
+    edit_trainee, update_trainee,
+    delete_trainee
 )
 
 from .views.trainee_course import (
     list_trainee_course,
-    add_trainee_course,
-    create_trainee_course,
+    add_trainee_course, create_trainee_course,
+    edit_trainee_course, update_trainee_course,
+    delete_trainee_course
 )
 
 urlpatterns = [
@@ -63,12 +66,19 @@ urlpatterns = [
 
     # Trainee UrlConf
     path('trainee/list/', list_trainees, name="list_trainee"),
+    path('trainee/<int:pk>/', detail_trainee, name="detail_trainee"),
     path('trainee/add/', add_trainee, name="add_trainee"),
     path('trainee/create/', create_trainee, name="create_trainee"),
+    path('trainee/<int:pk>/edit/', edit_trainee, name="edit_trainee"),
+    path('trainee/<int:pk>/update/', update_trainee, name="update_trainee"),
+    path('trainee/<int:pk>/delete', delete_trainee, name="delete_trainee"),
 
     # Trainee Course UrlConf
     path('trainee_course/list/', list_trainee_course, name="list_trainee_course"),
     path('trainee_course/add/', add_trainee_course, name="add_trainee_course"),
-    path("trainee_course/create/", create_trainee_course, name="create_trainee_course")
+    path("trainee_course/create/", create_trainee_course, name="create_trainee_course"),
+    path("trainee_course/<int:pk>/edit/", edit_trainee_course, name="edit_trainee_course"),
+    path("trainee_course/<int:pk>/update", update_trainee_course, name="update_trainee_course"),
+    path("trainee_course/<int:pk>/delete", delete_trainee_course, name="delete_trainee_course"),
     
 ]

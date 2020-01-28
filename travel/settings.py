@@ -65,6 +65,9 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'course.context_processors.show_notifications',
+                'course.context_processors.pie_chart',
+                'course.context_processors.area_chart',
+                'course.context_processors.ongoing_courses',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

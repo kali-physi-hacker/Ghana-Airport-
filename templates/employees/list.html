@@ -6,7 +6,7 @@
 
 {% block internal_style %}
     <style>
-        td > a, td > a:hover{
+        td > a{
             color: #858796;
             text-decoration: none;
         }
@@ -71,6 +71,7 @@
                         <th>Country</th>
                         <th>No. Of Course</th>
                         <th>Course</th>
+                        <th>View</th>
                     </tr>
                 </thead>
 
@@ -81,7 +82,7 @@
                                 <img style="margin:0; padding:0; border-radius:50%;" src="{% if employee.avatar %} {{ employee.avatar.url }} {% else %} {% if employee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}" width="50" height="50" />
                             </a>
                         </td>
-                        <td> <a href="{% url 'detail_employee' employee.pk %}">{{ employee.first_name }} {{ employee.surname }}</a></td>
+                        <td> {{ employee.first_name }} {{ employee.surname }} </td>
                         <td> {{ employee.category }} </td>
                         <td> {{ employee.station }}</td>
                         <td> {{ employee.country.name }}</td>
@@ -93,6 +94,7 @@
                                 No Course Yet 
                             {% endif %}
                         </td>
+                        <td><a href="{% url 'detail_employee' employee.pk %}"><i class="fas fa-eye"></i></a></td>
 
                     </tr>
                 {% endfor %}

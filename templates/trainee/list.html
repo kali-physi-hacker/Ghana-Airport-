@@ -4,6 +4,14 @@
 
 {% block title %} Trainee - list {% endblock title %}
 
+{% block internal_style %}
+    <style>
+        td > a {
+            color: #858796;
+        }
+    </style>
+{% endblock internal_style %}
+
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
 {% block content %}
@@ -62,26 +70,30 @@
                         <th>Country</th>
                         <th>No. Of Course</th>
                         <th>Course</th>
+                        <th>View</th>
                     </tr>
                 </thead>
 
                 {% for trainee in trainees %}
                     <tr>
                         <td>
-                            <a target="_blank" href="{% if employee.avatar %} employee.avatar.url {% else %} {% if employee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}"><img style="margin:0; padding:0; border-radius:50%;" src="{% if employee.avatar %} employee.avatar.url {% else %} {% if employee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}" width="50" height="50" /></a>
+                            <a target="_blank" href="{% if trainee.avatar %} trainee.avatar.url {% else %} {% if trainee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}"><img style="margin:0; padding:0; border-radius:50%;" src="{% if trainee.avatar %} trainee.avatar.url {% else %} {% if trainee.sex == 'M' %} {% static 'assets/images/face-1.png' %} {% else %} {% static 'assets/images/pic-2.png' %} {% endif %} {% endif %}" width="50" height="50" /></a>
                         </td>
                         <td> {{ trainee.first_name }} {{ trainee.surname }}</td>
                         <td> {{ trainee.company }} </td>
                         <!-- <td> {{ trainee.course_name }}</td> -->
                         <!-- <td> {{ trainee.status }}</td> -->
                         <td> {{ trainee.country.name }}</td>
-                        <td> {{ trainee.course_set.count }}</td>
+                        <td> {{ trainee.traineecourse_set.count }}</td>
                         <td> 
-                            {% if trainee.course_set.count > 0 %}
+                            {% if trainee.traineecourse_set.count > 0 %}
                                 {% for course in trainee.course_set.all %} {{ course.name }}, {% endfor %}
                             {% else %} 
                                 No Course Yet 
                             {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'detail_trainee' trainee.pk %}"><i class="fas fa-eye"></i></a>
                         </td>
 
                     </tr>

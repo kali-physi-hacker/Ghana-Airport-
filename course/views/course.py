@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.core.exceptions import PermissionDenied
 
 from django_countries.fields import countries
 
@@ -15,16 +16,12 @@ from course.models.notification import Notification
 from course.forms.course import CourseForm
 
 
-# @login_required
-def return_next_trips():
-    courses = Course.objects.filter(start_date__gte=timezone.now().date())
-    return courses 
-
 
 # Create your views here.
 @login_required
 def home(request):
     template = "index.html"
+    # import pdb; pdb.set_trace()
     total_employees = len(Employee.objects.all())
     total_courses = len(Course.objects.all())
     total_trainees = len(Trainee.objects.all())
@@ -78,30 +75,46 @@ def create_course(request):
 
 @login_required
 def edit_course(request, pk):
-    template = "course/edit.html"
-    course = get_object_or_404(course, pk=pk)
-    form = CourseForm(request.GET or None, instance=course)
-    context = {"form": form}
-    return render(request, template, context)
+    if request.user.is_superuser:
+        template = "course/edit.html"
+        course = get_object_or_404(Course, pk=pk)
+        form = CourseForm(request.GET or None, instance=course)
+        # import pdb; pdb.set_trace()
+        country_edit_code = course.country.code 
+        employees = Employee.objects.all()
+        selected_employees = course.employees.all()
+        unselected_employees = [employee for employee in employees if employee not in selected_employees]
+        # import pdb; pdb.set_trace()
+        context = {"form": form, "country_edit_code": country_edit_code, "pk": pk, "countries": countries, "employees": employees, "selected_employees": selected_employees, "unselected_employees": unselected_employees}
+        return render(request, template, context)
+    else:
+        raise PermissionDenied("You Are Not An Admin\nPermission Denied")
+        
 
 
 @login_required
 def update_course(request, pk):
-    if request.method == "POST":
-        course = get_object_or_404(Course, pk=pk)
-        form = CourseForm(request.POST or None, instance=course)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "course Updated Successfully")
-            return redirect("list_course")
-        else:
-            messages.error(request, "course Update Failed")
-            return redirect("edit_course")
+    if request.user.is_superuser:
+        if request.method == "POST":
+            course = get_object_or_404(Course, pk=pk)
+            form = CourseForm(request.POST or None, instance=course)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Course Updated Successfully")
+                return redirect("list_course")
+            else:
+                messages.error(request, "Course Update Failed")
+                return redirect("edit_course")
+    else:
+        raise PermissionDenied("You Are Not An Admin\nPermission Denied")
 
 
 @login_required
 def delete_course(request, pk):
-    course = get_object_or_404(Course, pk=pk)
-    course.delete()
-    messages.success(request, "Course Deleted Successfully")
-    return redirect("list_course")
+    if request.user.is_superuser:
+        course = get_object_or_404(Course, pk=pk)
+        course.delete()
+        messages.success(request, "Course Deleted Successfully")
+        return redirect("list_course")
+    else:
+        raise PermissionDenied("You Are Not An Admin\nPermission Denied")

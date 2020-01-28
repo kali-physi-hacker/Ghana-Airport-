@@ -4,6 +4,14 @@
 
 {% block title %} Trainee Courses{% endblock title %}
 
+{% block internal_style %}
+    <style>
+        td > a {
+            color: #858796;
+        }
+    </style>
+{% endblock internal_style %}
+
 {% block style_link %} <link href="/static/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> {% endblock style_link %}
 
 {% block content %}
@@ -36,7 +44,7 @@
 
             
         <div class="d-sm-flex align-items-center justify-content-between">
-            <h1 class="h3 mb-2 text-gray-800">Trip</h1>
+            <h1 class="h3 mb-2 text-gray-800">Trainee Courses</h1>
             <a href="{% url 'add_course' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-500"></i> New TraineeCourse
             </a>
@@ -56,16 +64,37 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Trainee</th>
+                        <th>Trainees</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
 
                 {% for trainee_course in trainee_courses %}
                     <tr>
-                        <td> {{ trainee.name }} </td>
-                        <td> {{ trainee.description }} </td>
-                        <td> {% for employee in trainee.employees.all %} {{ employee.first_name }} {{ employee.surname }}, {% endfor %}</td>
+                        <td> {{ trainee_course.name }} </td>
+                        <td> {{ trainee_course.description }} </td>
+                        <td> {% for trainee in trainee_course.trainee.all %} {{ trainee.first_name }} {{ trainee.surname }}, {% endfor %}</td>
+                        <td><a data-toggle="modal" data-target="#deleteModal" href="#"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a href="{% url 'edit_trainee_course' trainee_course.pk %}"><i class="fas fa-pencil-alt"></i></a></td>
                     </tr>
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteCourseModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Are you sure you want to delete Course?</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <a class="btn btn-danger" href="{% url 'delete_trainee_course' trainee_course.pk %}">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </table>
 

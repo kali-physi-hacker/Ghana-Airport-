@@ -65,20 +65,26 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Description</th>
                         <th>Employees</th>
-                        <th>Action</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
 
                 {% for course in courses %}
                     <tr>
                         <td> {{ course.name }} </td>
-                        <td> {{ course.description }} </td>
+                        <td>{{ course.start_date }}</td>
+                        <td>{{ course.end_date }}</td>
+                        <td> {% if course.description %} {{ course.description }} {% else %} <i class="text-gray">No Description</i> {% endif %} </td>
                         <td> {% for employee in course.employees.all %} {{ employee.first_name }} {{ employee.surname }}, {% endfor %}</td>
-                        <td><a data-toggle="modal" data-target="#deleteModal" href="#"><i class="fa fa-trash-alt"></i></a></td>
+                        <td><a data-toggle="modal" data-target="#deleteModal{{course.pk}}" href="#"><i class="fa fa-trash-alt"></i></a></td>
+                        <td><a href="{% url 'edit_course' course.pk %}"><i class="fas fa-pencil-alt"></a></td>
                     </tr>
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteCourseModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal{{course.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteCourseModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">

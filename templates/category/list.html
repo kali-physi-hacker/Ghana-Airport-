@@ -65,7 +65,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Action</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
 
@@ -73,9 +74,10 @@
                     <tr>
                         <td> {{ category.name }} </td>
                         <td> {{ category.description }} </td>
-                        <td style="cursor: pointer"><a data-toggle="modal" data-target="#deleteModal" href="#"><i class="fa fa-trash-alt"></i></a></td>
+                        <td style="cursor: pointer"><a data-toggle="modal" data-target="#deleteModal{{category.pk}}" href="#"><i class="fa fa-trash-alt"></i></a></td>
+                        <td style="cursor: pointer"><a href="{% url 'edit_category' category.pk %}"><i class="fas fa-pencil-alt"></i></a>
                     </tr>
-                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteRankModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteModal{{category.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteRankModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">

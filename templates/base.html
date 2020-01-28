@@ -137,6 +137,8 @@
             <h6 class="collapse-header">External Partners:</h6>
             <a class="collapse-item {{ list_trainee_active }}" href="{% url 'list_trainee' %}">List Trainee</a>
             <a class="collapse-item {{ add_trainee_active }}" href="{% url 'add_trainee' %}">Add Trainee</a>
+            <hr class="sidebar-divider bg-secondary">
+            <a class="collapse-item {{ trainee_course_list_active }}" href="{% url 'list_trainee_course' %}">List Trainee Course</a>
             <a class="collapse-item {{ add_trainee_course_active }}" href="{% url 'add_trainee_course' %}">Add Trainee Course</a>
           </div>
         </div>
@@ -198,18 +200,18 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">{{ notifications | length }}</span>
+                <span class="badge {% if notifications %}badge-danger{% endif %} badge-counter">{% if notifications %}{{ notifications | length }}{% endif %}</span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  Notification Center
                 </h6>
                 {% for notification in notifications %}
                 <a id="notification{{ notification.pk }}" class="dropdown-item d-flex align-items-center" onclick="readNotification('notification{{notification.pk}}')">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
-                      <i class="fas fa-plane text-white"></i>
+                      <i class="fas fa-flag-checkered text-white"></i>
                     </div>
                   </div>
                   <div>
@@ -322,7 +324,7 @@
   <script>
     const readNotification = (id) => {
       const notification = document.getElementById(id);
-      // const notificationText = document.getElementsByClassName(id)
+      const notificationText = document.getElementsByClassName(id)
       alert(notification)
       notification.classList.remove("dark");
       notification.classList.add("gray")

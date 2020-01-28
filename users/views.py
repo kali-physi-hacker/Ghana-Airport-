@@ -28,6 +28,7 @@ def sign_in(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
 
+            # import pdb; pdb.set_trace()
             user = authenticate(username=username, password=password)
             login(request, user)
 
