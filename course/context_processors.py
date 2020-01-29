@@ -74,10 +74,22 @@ def pie_chart(request):
     total_entities = employees + trainees_done + trainees_pending
 
     # import pdb; pdb.set_trace()
-    trainees_done_pie = (trainees_done/total_entities)*100
-    trainees_pending_pie = (trainees_pending/total_entities)*100
-    employees_pie = (employees/total_entities)*100
+    trainees_done_pie = 0
+    try:
+        trainees_done_pie = (trainees_done/total_entities)*100
+    except ZeroDivisionError:
+        trainee_done_pie = 0
+    
+    try:
+        trainees_pending_pie = (trainees_pending/total_entities)*100
+    except ZeroDivisionError:
+        trainees_pending_pie = 0
 
+    try:
+        employees_pie = (employees/total_entities)*100
+    except ZeroDivisionError:
+        employees_pie = 0
+        
     context = {
         "employees": employees_pie, "trainees_done": trainees_done_pie, "trainees_pending": trainees_pending_pie
     }
