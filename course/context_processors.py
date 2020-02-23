@@ -43,21 +43,7 @@ def show_notifications(request):
             message=message,
         )
 
-    # for course in courses:
-    #     title = course.name 
-    #     try:
-    #         message = course.description[:20] + "..."
-    #     except TypeError:
-    #         message = "No Descriptions"
-    #     datetime = timezone.now()
-    #     notifications = Notification.objects.all()
-    #     for notification in notifications:
-    #         if notification.title != title:
-    #             Notification.objects.create(
-    #                 title=title,
-    #                 message=message,
-    #                 datetime=datetime
-    #             )
+
 
     notifications = Notification.objects.all()
     # import pdb; pdb.set_trace()
