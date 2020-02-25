@@ -20,7 +20,6 @@ def get_ongoing_courses():
 
 def show_notifications(request):
 
-    # Delete Notification Entries 
     Notification.objects.all().delete()
     
     courses = return_next_trips()
@@ -29,7 +28,6 @@ def show_notifications(request):
         if course.notify() == 1:
             notify_courses.append(course)
     for course in notify_courses:
-    # if course.notify() == 1:
         print('Worked')
         title = course.name
         try:
@@ -46,7 +44,6 @@ def show_notifications(request):
 
 
     notifications = Notification.objects.all()
-    # import pdb; pdb.set_trace()
     context = {'notifications': notifications}
     return context 
 
@@ -59,7 +56,6 @@ def pie_chart(request):
     trainees_pending = trainees.filter(status='P').count()
     total_entities = employees + trainees_done + trainees_pending
 
-    # import pdb; pdb.set_trace()
     trainees_done_pie = 0
     try:
         trainees_done_pie = (trainees_done/total_entities)*100
@@ -93,8 +89,6 @@ def area_chart(request):
     month_names = ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')
     for n, i in enumerate(month_names):
         context[i] = month_count[n].count()
-        print(context[i])
-    # import pdb; pdb.set_trace()
     return context
 
 

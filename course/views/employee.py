@@ -9,13 +9,16 @@ from course.models.employee import Employee
 from course.models.category import Category
 from course.forms.employee import EmployeeForm
 
+from course.models.category import Category
+
 
 @login_required
 def list_employees(request):
     template = "employees/list.html"
     employees = Employee.objects.all()
+    categories = Category.objects.all()
     context = {"employees": employees, "list_employee_active": "active", "employee_show": "show",
-               "employee_active": "active"}
+               "employee_active": "active", "categories": categories}
     return render(request, template, context)
 
 

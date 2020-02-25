@@ -44,7 +44,7 @@ def home(request):
 @login_required
 def list_course(request):
     template = "course/list.html"
-    courses = Course.objects.all()
+    courses = Course.objects.all().order_by('-pk')
     context = {"courses": courses, "list_course_active": "active", "course_show": "show", "course_active": "active"}
     return render(request, template, context)
 
@@ -59,9 +59,41 @@ def add_course(request, input_data=None):
 
 
 @login_required
+def add_by_rank(request):
+    rank_name = request.GET.get("rank")
+    rank = Category.objects.filter(name=rank_name)[0].pk
+    # import pdb; pdb.set_trace()
+    template = "course/add_by_rank.html"
+    form = CourseForm()
+    employees = Employee.objects.all()
+    ranked_employees = Employee.objects.filter(category=rank)
+    context = {
+        "form": form, "employees": employees, "add_course_active": "active", "course_show": "show", 
+        "course_active": "active", "countries":countries, "ranked_employees": ranked_employees, "rank": rank
+    }
+    return render(request, template, context)
+
+
+@login_required
+def create_by_rank(request, rank):
+    if request.method == "POST":
+        employee_list = [i.pk for i in Employee.objects.filter(category=rank)]
+        request.POST = request.POST.copy()
+        request.POST.setlist("employees", employee_list)
+        form = CourseForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Course Added Successfully")
+            return redirect("list_course")
+        else:
+            messages.error(request, "Course Creation Failed")
+            return add_course(request, form)
+
+@login_required
 def create_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST or None)
+        request.POST = request.POST.copy()
         # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save()

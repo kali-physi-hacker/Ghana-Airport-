@@ -23,13 +23,16 @@ def _logout(request):
 def sign_in(request):
     if request.method == "POST":
         form = UserForm(request.POST or None)
-        # import pdb; pdb.set_trace()
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
 
-            # import pdb; pdb.set_trace()
             user = authenticate(username=username, password=password)
-            login(request, user)
+            if user is not None:
+                login(request, user)
+
+            else:
+                messages.success(request, "Invalid User Credentials")
+                return redirect("login_user")
 
             return redirect("home")
