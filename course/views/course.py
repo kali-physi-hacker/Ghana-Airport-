@@ -81,6 +81,8 @@ def create_by_rank(request, rank):
         request.POST = request.POST.copy()
         request.POST.setlist("employees", employee_list)
         form = CourseForm(request.POST or None)
+        # import pdb; pdb.set_trace()
+        print("A print statement")
         if form.is_valid():
             form.save()
             messages.success(request, "Course Added Successfully")
@@ -94,13 +96,12 @@ def create_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST or None)
         request.POST = request.POST.copy()
-        # import pdb; pdb.set_trace()
         if form.is_valid():
             form.save()
             messages.success(request, "Course Added Successfully")
             return redirect("list_course")
         else:
-            # import pdb; pdb.set_trace()
+
             messages.error(request, "Course Creation Failed")
             return add_course(request, form) # redirect("add_course_args", input_data=2)
 
@@ -111,12 +112,10 @@ def edit_course(request, pk):
         template = "course/edit.html"
         course = get_object_or_404(Course, pk=pk)
         form = CourseForm(request.GET or None, instance=course)
-        # import pdb; pdb.set_trace()
         country_edit_code = course.country.code 
         employees = Employee.objects.all()
         selected_employees = course.employees.all()
         unselected_employees = [employee for employee in employees if employee not in selected_employees]
-        # import pdb; pdb.set_trace()
         context = {"form": form, "country_edit_code": country_edit_code, "pk": pk, "countries": countries, "employees": employees, "selected_employees": selected_employees, "unselected_employees": unselected_employees}
         return render(request, template, context)
     else:
