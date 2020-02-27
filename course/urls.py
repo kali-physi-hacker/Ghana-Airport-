@@ -5,6 +5,7 @@ from .views.course import (
     add_course, create_course, 
     edit_course, update_course,
     delete_course, add_by_rank, create_by_rank,
+    read_notification,
 )
 
 from .views.category import (
@@ -48,6 +49,7 @@ urlpatterns = [
     path('course/<int:pk>/edit/', edit_course, name="edit_course"),
     path('course/<int:pk>/update/', update_course, name="update_course"),
     path('course/<int:pk>/delete/', delete_course, name="delete_course"),
+    path('course/notification/<int:notification_id>/', read_notification, name="read_notification"),
 
     # Category UrlConf
     path('category/list/', list_categories, name="list_categories"),

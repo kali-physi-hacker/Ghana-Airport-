@@ -1,4 +1,5 @@
-from django.utils import timezone 
+from django.utils import timezone
+from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 
 from course.models.notification import Notification
@@ -7,21 +8,21 @@ from course.models.course import Course
 from course.models.employee import Employee
 from course.models.trainee import Trainee
 
+
 # @login_required
 def return_next_trips():
     courses = Course.objects.filter(start_date__gte=timezone.now().date())
-    return courses 
+    return courses
 
 
 def get_ongoing_courses():
     courses = Course.objects.filter(start_date__lte=timezone.now()).filter(end_date__gte=timezone.now())
-    return courses 
+    return courses
 
 
 def show_notifications(request):
+    # Notification.objects.all().delete()
 
-    Notification.objects.all().delete()
-    
     courses = return_next_trips()
     notify_courses = []
     for course in courses:
@@ -31,21 +32,23 @@ def show_notifications(request):
         print('Worked')
         title = course.name
         try:
-            message = course.description[:20] + "..."
+            message = course.description + "..."
         except TypeError:
             message = "No Descriptions"
         datetime = timezone.now()
 
-        Notification.objects.create(
-            title=title,
-            message=message,
-        )
+        try:
+            Notification.objects.create(
+                unique_id=course.id,
+                title=title,
+                message=message,
+            )
+        except IntegrityError:
+            print("Notification already exist")
 
-
-
-    notifications = Notification.objects.all()
+    notifications = Notification.objects.all().filter(read=False)
     context = {'notifications': notifications}
-    return context 
+    return context
 
 
 # @login_required
@@ -58,30 +61,30 @@ def pie_chart(request):
 
     trainees_done_pie = 0
     try:
-        trainees_done_pie = (trainees_done/total_entities)*100
+        trainees_done_pie = (trainees_done / total_entities) * 100
     except ZeroDivisionError:
         trainee_done_pie = 0
-    
+
     try:
-        trainees_pending_pie = (trainees_pending/total_entities)*100
+        trainees_pending_pie = (trainees_pending / total_entities) * 100
     except ZeroDivisionError:
         trainees_pending_pie = 0
 
     try:
-        employees_pie = (employees/total_entities)*100
+        employees_pie = (employees / total_entities) * 100
     except ZeroDivisionError:
         employees_pie = 0
-        
+
     context = {
         "employees": employees_pie, "trainees_done": trainees_done_pie, "trainees_pending": trainees_pending_pie
     }
-    return context 
+    return context
 
 
 def area_chart(request):
     trainees = Trainee.objects.all()
     courses = Course.objects.all()
-    months = [i+1 for i in range(12)]
+    months = [i + 1 for i in range(12)]
     month_count = []
     for i in months:
         month_count.append(courses.filter(start_date__month=str(i)))
@@ -94,7 +97,7 @@ def area_chart(request):
 
 def ongoing_courses(request):
     colors = [
-        '#4e73df', '#6610f2', '#6f42c1', '#e83e8c', "#e74a3b", "#fd7e14", "#f6c23e", "#1cc88a", "#20c9a6", "#36b9cc", 
+        '#4e73df', '#6610f2', '#6f42c1', '#e83e8c', "#e74a3b", "#fd7e14", "#f6c23e", "#1cc88a", "#20c9a6", "#36b9cc",
     ]
     courses = get_ongoing_courses()
     courses_lst = []
@@ -104,7 +107,6 @@ def ongoing_courses(request):
         except IndexError:
             i = 0
     context = {"ongoing_courses": courses_lst}
-    # import pdb; pdb.set_trace()
     return context
 
 
@@ -112,7 +114,8 @@ def ongoing_courses(request):
 def read_notification(request, pk):
     if request.method == "POST":
         notification = Notification.objects.get(pk=pk)
-        notification.read = True 
+        notification.read = True
         notification.save()
     else:
-        import pdb; pdb.set_trace()
+        import pdb;
+        pdb.set_trace()

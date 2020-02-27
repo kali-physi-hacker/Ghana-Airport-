@@ -10,11 +10,11 @@ from course.models.course import Course
 from course.models.trainee import Trainee
 from course.models.employee import Employee
 from course.models.category import Category
+from course.models.notification import Notification
 
 from course.models.notification import Notification
 
 from course.forms.course import CourseForm
-
 
 
 # Create your views here.
@@ -39,6 +39,16 @@ def home(request):
         if trainee"""
 
     return render(request, template, context)
+
+
+@login_required
+def read_notification(request, notification_id):
+    notification = Notification.objects.get(pk=notification_id)
+    notification.read = True
+    notification.save()
+    previous_url = request.META.get("HTTP_REFERER")
+    return redirect(previous_url)
+    # import pdb; pdb.set_trace()
 
 
 @login_required

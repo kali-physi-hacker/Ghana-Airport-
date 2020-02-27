@@ -1,4 +1,3 @@
-
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,19 +13,19 @@
 
     <title>{% block title %}{% endblock title %}</title>
 
-    <link rel='shortcut icon' href='{% static 'assets/images/logo_Gacl.png' %}' />
+    <link rel='shortcut icon' href='{% static 'assets/images/logo_Gacl.png' %}'/>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}" />
-    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>
 
-    <link rel="stylesheet" href="{% static 'css/chosen/chosen.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/chosen/chosen.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/tempusdominus-bootstrap-4.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/magic-check.css' %}" />
-    
+    <link rel="stylesheet" href="{% static 'css/magic-check.css' %}"/>
 
 
     <!-- Custom styles for this template-->
@@ -39,317 +38,366 @@
 </head>
 
 <body id="page-top">
-  
-  {% block content_container %}
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+{% block content_container %}
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
-        <div class="sidebar-brand-icon">
-          <img class="p-3" width="90" height="90" style="border-radius: 50%; position: relative; top: 10px" src="{% static 'assets/images/logo.png' %}" />
-        </div>
-        <div class="sidebar-brand-text">RFFS TRAINING RECORDS</div>
-      </a><br />
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+                <div class="sidebar-brand-icon">
+                    <img class="p-3" width="90" height="90" style="border-radius: 50%; position: relative; top: 10px"
+                         src="{% static 'assets/images/logo.png' %}"/>
+                </div>
+                <div class="sidebar-brand-text">RFFS TRAINING RECORDS</div>
+            </a><br/>
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'home' %}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Home</span></a>
-      </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Course
-      </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item {{ employee_active }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Employees</span>
-        </a>
-        <div id="collapseTwo" class="collapse {{ employee_show }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Employees Components:</h6>
-            <a class="collapse-item {{ list_employee_active }}" href="{% url 'list_employees' %}">List Employees</a>
-            <a class="collapse-item {{ add_employee_active }}" href="{% url 'add_employee' %}">Add Employees</a>
-          </div>
-        </div>
-      </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Course
+            </div>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item {{ category_active }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-layer-group"></i>
-          <span>Ranks</span>
-        </a>
-        <div id="collapseUtilities" class="collapse {{ category_show }}" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Rank Components:</h6>
-            <a class="collapse-item {{ list_category_active }}" href="{% url 'list_categories' %}">List Ranks</a>
-            <a class="collapse-item {{ add_category_active }}" href="{% url 'add_category' %}">Add Rank</a>
-          </div>
-        </div>
-      </li>
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ employee_active }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Employees</span>
+                </a>
+                <div id="collapseTwo" class="collapse {{ employee_show }}" aria-labelledby="headingTwo"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Employees Components:</h6>
+                        <a class="collapse-item {{ list_employee_active }}" href="{% url 'list_employees' %}">List
+                            Employees</a>
+                        <a class="collapse-item {{ add_employee_active }}" href="{% url 'add_employee' %}">Add
+                            Employees</a>
+                    </div>
+                </div>
+            </li>
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Course
-      </div>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item {{ category_active }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                   aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-layer-group"></i>
+                    <span>Ranks</span>
+                </a>
+                <div id="collapseUtilities" class="collapse {{ category_show }}" aria-labelledby="headingUtilities"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Rank Components:</h6>
+                        <a class="collapse-item {{ list_category_active }}" href="{% url 'list_categories' %}">List
+                            Ranks</a>
+                        <a class="collapse-item {{ add_category_active }}" href="{% url 'add_category' %}">Add Rank</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-      <!-- Nav Item - Course Collapse Menu -->
-      <li class="nav-item {{ course_active }}">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-book-open"></i>
-          <span>Course</span>
-        </a>
-        <div id="collapsePages" class="collapse {{ course_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Course Components:</h6>
-            <a class="collapse-item {{ list_course_active }}" href="{% url 'list_course' %}">List Course</a>
-            <a class="collapse-item {{ add_course_active }}" href="{% url 'add_course' %}">Add Course</a>
-          </div>
-        </div>
-      </li>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Course
+            </div>
+
+            <!-- Nav Item - Course Collapse Menu -->
+            <li class="nav-item {{ course_active }}">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                   aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-book-open"></i>
+                    <span>Course</span>
+                </a>
+                <div id="collapsePages" class="collapse {{ course_show }}" aria-labelledby="headingPages"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Course Components:</h6>
+                        <a class="collapse-item {{ list_course_active }}" href="{% url 'list_course' %}">List Course</a>
+                        <a class="collapse-item {{ add_course_active }}" href="{% url 'add_course' %}">Add Course</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Trainee Collapse Menu -->
-      <li class="nav-item {{ trainee_active }}">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTrainee" aria-expanded="true" aria-controls="collapseTrainee">
-          <i class="fas fa-fw fa-graduation-cap"></i>
-          <span>External Partners</span>
-        </a>
-        <div id="collapseTrainee" class="collapse {{ trainee_show }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">External Partners:</h6>
-            <a class="collapse-item {{ list_trainee_active }}" href="{% url 'list_trainee' %}">List Trainee</a>
-            <a class="collapse-item {{ add_trainee_active }}" href="{% url 'add_trainee' %}">Add Trainee</a>
-            <hr class="sidebar-divider bg-secondary">
-            <a class="collapse-item {{ trainee_course_list_active }}" href="{% url 'list_trainee_course' %}">List Trainee Course</a>
-            <a class="collapse-item {{ add_trainee_course_active }}" href="{% url 'add_trainee_course' %}">Add Trainee Course</a>
-          </div>
-        </div>
-      </li>
+            <li class="nav-item {{ trainee_active }}">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTrainee" aria-expanded="true"
+                   aria-controls="collapseTrainee">
+                    <i class="fas fa-fw fa-graduation-cap"></i>
+                    <span>External Partners</span>
+                </a>
+                <div id="collapseTrainee" class="collapse {{ trainee_show }}" aria-labelledby="headingPages"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">External Partners:</h6>
+                        <a class="collapse-item {{ list_trainee_active }}" href="{% url 'list_trainee' %}">List
+                            Trainee</a>
+                        <a class="collapse-item {{ add_trainee_active }}" href="{% url 'add_trainee' %}">Add Trainee</a>
+                        <hr class="sidebar-divider bg-secondary">
+                        <a class="collapse-item {{ trainee_course_list_active }}"
+                           href="{% url 'list_trainee_course' %}">List Trainee Course</a>
+                        <a class="collapse-item {{ add_trainee_course_active }}" href="{% url 'add_trainee_course' %}">Add
+                            Trainee Course</a>
+                    </div>
+                </div>
+            </li>
 
-    </ul>
-    <!-- End of Sidebar -->
+        </ul>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-dark" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                 aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                               placeholder="Search for..." aria-label="Search"
+                                               aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge {% if notifications %}badge-danger{% endif %} badge-counter">{% if notifications %}
+                                    {{ notifications | length }}{% endif %}</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Notification Center
+                                </h6>
+                                {% for notification in notifications %}
+                                    <a style="cursor: pointer" id="notification{{ notification.pk }}"
+                                       class="dropdown-item d-flex align-items-center" data-toggle="modal"
+                                       data-target="#notify-alert{{ notification.pk }}">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-flag-checkered text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500 notification{{ notification.pk }}">{{ notification.datetime }}</div>
+                                            <span class="font-weight-bold text-dark">{{ notification.message | truncatewords:5 }}</span>
+                                        </div>
+                                    </a>
+
+                                {% endfor %}
+
+
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle"></i>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    {% block content %} <h1>No content</h1> {% endblock content %}
+
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-          </form>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge {% if notifications %}badge-danger{% endif %} badge-counter">{% if notifications %}{{ notifications | length }}{% endif %}</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Notification Center
-                </h6>
-                {% for notification in notifications %}
-                <a id="notification{{ notification.pk }}" class="dropdown-item d-flex align-items-center" onclick="readNotification('notification{{notification.pk}}')">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-flag-checkered text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500 notification{{notification.pk}}">{{ notification.datetime }}</div>
-                    <span class="font-weight-bold text-dark">{{ notification.message }}</span>
-                  </div>
-                </a>
-
-                {% endfor %}
-                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-code text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                -->
-                
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user-circle"></i>
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          {% block content %} <h1>No content</h1> {% endblock content %}
+            <!-- End of Main Content -->
 
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+{% endblock content_container %}
 
-  {% endblock content_container %}
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-  </a>
+</a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Notification Modals -->
+
+{% for notification in notifications %}
+    <!-- Modal -->
+    <form action="{% url 'read_notification' notification.pk %}">
+        <div class="modal fade" id="notify-alert{{ notification.pk }}" tabindex="-1" role="dialog"
+             aria-labelledby="notification{{ notification.pk }}ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notification{{ notification.pk }}ModalLabel">{{ notification.title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ notification.message }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Mark As Read</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endfor %}
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{% url '_logout' %}">Logout</a>
+            </div>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{% url '_logout' %}">Logout</a>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  {% block scriptC %}
+{% block scriptC %}
 
 
-  {% endblock scriptC %}
+{% endblock scriptC %}
 
-  <script>
+<script>
     const readNotification = (id) => {
-      const notification = document.getElementById(id);
-      const notificationText = document.getElementsByClassName(id)
-      alert(notification)
-      notification.classList.remove("dark");
-      notification.classList.add("gray")
-      // alert(notification)
+        const notification = document.getElementById(id);
+        const notificationText = document.getElementsByClassName(id)
+        alert(notification)
+        notification.classList.remove("dark");
+        notification.classList.add("gray")
+        // alert(notification)
     }
 
-  </script>
+</script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'js/moment.min.js' %}"></script>
-  <script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'js/BsMultiSelect.js' %}"></script>
-  <script>$(".multiselect").dashboardCodeBsMultiSelect();</script>
-  <!-- Core plugin JavaScript-->
-  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'js/moment.min.js' %}"></script>
+<script src="{% static 'js/tempusdominus-bootstrap-4.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/BsMultiSelect.js' %}"></script>
+<script>$(".multiselect").dashboardCodeBsMultiSelect();</script>
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-  <!-- <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+<!-- <script src="{% static 'js/bootstrap-multiselect.min.js' %}"></script>
    <script type="text/javascript" src="{% static 'js/chosen/chosen.jquery.js' %}"></script> -->
 
-  {% block script %} {% endblock script %}
+{% block script %} {% endblock script %}
 
 </body>
 
