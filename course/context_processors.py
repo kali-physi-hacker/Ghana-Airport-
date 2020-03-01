@@ -29,7 +29,7 @@ def show_notifications(request):
         if course.notify() == 1:
             notify_courses.append(course)
     for course in notify_courses:
-        print('Worked')
+        # print('Worked')
         title = course.name
         try:
             message = course.description + "..."
@@ -44,7 +44,8 @@ def show_notifications(request):
                 message=message,
             )
         except IntegrityError:
-            print("Notification already exist")
+            # print("Notification already exist")
+            import pdb; pdb.set_trace() 
 
     notifications = Notification.objects.all().filter(read=False)
     context = {'notifications': notifications}
