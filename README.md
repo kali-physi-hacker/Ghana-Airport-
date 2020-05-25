@@ -1,3 +1,7 @@
+![Dashboard](project-images/dashboard.png)
+![Login Page](project-images/login.png)
+![Employee List](project-images/employee-list.png)
+![Employee Add](project-images/add_employee.png)
 # Ghana Airport Service
 
 ### Introduction
