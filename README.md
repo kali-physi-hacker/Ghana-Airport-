@@ -52,7 +52,7 @@ python manage.py runserver
 ```
 2. Open the browser and navigate to localhost:8000
 
-######NOTE:
+###### NOTE:
 - Be sure to clone this repo and move into the directory
  as following before running the above code:
 ```shell script
